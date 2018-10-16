@@ -14,6 +14,8 @@ import CardFront from './CardFront.js';
 import CardBack from './CardBack.js';
 
 
+
+
 const posterMap = {
   'choux-maru-istanbul': cmi,
   'choux-maru-part-1': cmp1,
@@ -30,14 +32,21 @@ const posterMap = {
 export default class MovieCard extends Component {
 
   render() {
+   const movieData = this.props
+
     return (
       <div className="movie-card">
-        {/* which component should receive which props? */}
-        <CardFront />
-        <CardBack />
+        <CardFront poster={ posterMap[movieData.poster] } />
+        <CardBack genres={movieData.genres} title={movieData.title} IMDBRating={movieData.IMDBRating}/>
       </div>
     )
   }
 }
 
+MovieCard.defaultProps = {
+  poster: 'default',
+  title: 'Unknown',
+  genres: ['No Genre(s) Found'],
+  IMDBRating: null
+}
 // Don't forget your default props!
